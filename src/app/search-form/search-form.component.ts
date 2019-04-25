@@ -7,14 +7,26 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
-  form: FormGroup;
+  searchForm: FormGroup;
+  results: any;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
+    this.searchForm = this.fb.group({
       query: ['', Validators.required]
     });
+  }
+
+  getResults() {
+    if (this.searchForm.valid) {
+      if (this.results.length) {
+        return this.results;
+      }
+      return 'No results.';
+    } else {
+      console.log('Invalid form!');
+    }
   }
 
 }
