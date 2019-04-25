@@ -206,10 +206,11 @@ Then use TDD to complete the remaining tests for the Search requirements above.
 
 
 
-## Exercise
+## Part IV: Hero Book, GO!
 
 Your task is to use TDD to develop the remaining features for this app. Below are some stories to get you started, but you're not limited to the components, services and models listed below. Use all of your knowledge of Angular to meet the requirements.
 
+You'll find json data files in the `srce/app/data` folder. Use it to help you understand the shape of the data and the different objects your app will eventually use and to develop stronger tests.
 
 ### Requirements
 
@@ -230,5 +231,7 @@ Your task is to use TDD to develop the remaining features for this app. Below ar
 - have an image
 
 **Search**
-- can search by name
+- can search for heroes by name
 - has filters to search by: powers, species, and gender
+
+> TODO: Add link to Hero Book API!

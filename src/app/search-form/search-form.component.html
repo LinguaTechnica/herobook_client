@@ -1,1 +1,6 @@
-
+<div>
+  <form [formGroup]="searchForm" (ngSubmit)="getResults()">
+    <input type="text" formControlName="query" name="query">
+    <input type="submit" name="submit">
+  </form>
+</div>

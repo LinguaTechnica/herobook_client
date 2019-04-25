@@ -57,7 +57,7 @@ describe('SearchFormComponent', () => {
     component.results = results;
     const searchForm = component.searchForm.controls;
 
-    // Exercise
+    // Exercise: the form must be valid
     searchForm.query.setValue('scarlet witch');
 
     // Assert
