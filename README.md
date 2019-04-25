@@ -18,7 +18,7 @@ ng serve -o
 
 The Materialize CSS framework is already installed in this project and ready to use. You can easily apply styling by using the documentation: https://materializecss.com/navbar.html
 
-## Walk Through
+## Part I: Testing Components
 
 Since Angular provides us with matching tests for every module we create, we'll start by first updating the tests for `AppModule`.
 
@@ -120,6 +120,72 @@ How much code is needed to make this test pass? Make an attempt before viewing t
 ```
 </p>
 </details>
+
+
+## Part 2: Testing Forms
+
+If you've got a good handle on testing components, testing forms is pretty straight forward. Let's make a search form component and test it.
+
+Once created, open `search-form.component.ts` and the matching spec file. Run the tests. 
+
+Before writing tests, always review the requirements. If there aren't any, create stories to help you understand what your code will do. Here's how we might describe the requirements for a search form.
+
+``` 
+Search Form Component
+- should have a search form
+- should require query to submit form
+- should validate form
+- should return search results
+- should return message if there are no results
+```
+
+Now implement 3 tests. Go ahead and write the outlines of each tests by starting the `it` function and adding the descriptions you see in the requirements. Start with the first:
+
+```typescript
+it('should have a search form', () => {
+  
+});
+
+xit('should require query to submit form', () => {
+  
+});
+
+xit('should validate form', () => {
+  
+});
+
+xit('should return search results', () => {
+  
+});
+
+xit('should show message if no results found', () => {
+  
+});
+```
+
+> NOTE: To skip tests, simply add an 'x' to the beginning of the test as you see here. Remove the x to run the tests. Running empty tests will otherwise return a successful test run, which isn't helpful.
+
+Let's add some code to test the first one. The requirement asks us to make sure that the component has a form. All we have to do is create an instance of the component and check that it has a property whose value is a form.
+
+```typescript
+it('should have search form', () => {
+  // Setup: create an instance of the component
+  const sfc = new SearchFormComponent();
+  // Exercise: get the value of the form property
+  const searchForm = sfc.form;
+  // Assert: test that the property isn't null or undefined
+  expect(searchForm).toBeTruthy();
+});
+```
+
+Run the test. 
+
+To make this pass, we need to create a form property so add it and run the tests again. It should fail again.
+
+Finally, we need to set the value of the form to be an actual form. Try using the `FormBuilder` to make the first test pass. Remember, least amount of code possible.
+
+Then use TDD to complete the remaining tests for the Search requirements above.
+
 
 
 ## Exercise
