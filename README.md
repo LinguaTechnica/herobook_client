@@ -115,11 +115,9 @@ We can make this test pass with the following code:
 
 <details>
 <summary>Click to view solution</summary>
-<p>
-```html
+```
 <nav><a href="/" class="brand-logo">Hero Book</a></nav>
 ```
-</p>
 </details>
 
 The homepage should also have a search bar. Add a test for the search bar:
@@ -134,13 +132,11 @@ The homepage should also have a search bar. Add a test for the search bar:
 How much code is needed to make this test pass? Make an attempt before viewing the answer below!
 <details>
 <summary>Click to view solution</summary>
-<p>
-```html
+<code>
   <form>
     <input type="text" placeholder="Search">
   </form>
-```
-</p>
+</code>
 </details>
 
 
