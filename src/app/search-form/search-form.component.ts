@@ -24,7 +24,9 @@ export class SearchFormComponent implements OnInit {
 
   getResults() {
     if (this.searchForm.valid) {
-      this.results = this.heroes.filter(hero => hero.Name === this.searchForm.controls.query.value);
+      this.results = this.heroService.find(this.searchForm.controls.query);
+      console.log('Searching...');
+      // this.results = this.heroes.filter(hero => hero.Name === this.searchForm.controls.query.value);
       if (this.results.length) {
         return this.results;
       }
