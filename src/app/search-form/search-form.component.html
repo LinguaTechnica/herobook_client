@@ -3,4 +3,10 @@
     <input type="text" formControlName="query" name="query">
     <input type="submit" name="submit">
   </form>
+  <div>
+    <div *ngFor="let hero of results">
+      {{ hero.Name }}
+    </div>
+
+  </div>
 </div>

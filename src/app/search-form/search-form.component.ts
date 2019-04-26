@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HeroesService} from '../heroes.service';
+import {Hero} from '../hero';
 
 @Component({
   selector: 'app-search-form',
@@ -7,19 +9,22 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
+  heroes: Hero[];
   searchForm: FormGroup;
   results: any;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private heroService: HeroesService) { }
 
   ngOnInit() {
     this.searchForm = this.fb.group({
       query: ['', Validators.required]
     });
+    this.heroService.all().subscribe(heroes => this.heroes = heroes );
   }
 
   getResults() {
     if (this.searchForm.valid) {
+      this.results = this.heroes.filter(hero => hero.Name === this.searchForm.controls.query.value);
       if (this.results.length) {
         return this.results;
       }
