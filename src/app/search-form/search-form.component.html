@@ -1,11 +1,12 @@
 <div>
   <form [formGroup]="searchForm" (ngSubmit)="getResults()">
-    <input type="text" formControlName="query" name="query">
+    <input type="text" formControlName="query" name="query" placeholder="Search">
     <input type="submit" name="submit">
   </form>
   <div>
+    <h3>Search Results</h3>
     <div *ngFor="let hero of results">
-      {{ hero.Name }}
+      {{ hero.name }}
     </div>
 
   </div>

@@ -1,45 +1,47 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchFormComponent } from './search-form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import {MockHeroesService} from '../heroes.service.mock';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HeroesService } from '../heroes.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Hero } from '../hero';
+
 
 describe('SearchFormComponent', () => {
   let component: SearchFormComponent;
   let fixture: ComponentFixture<SearchFormComponent>;
+  let heroesService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
-      declarations: [ SearchFormComponent ]
+      imports: [ ReactiveFormsModule, HttpClientTestingModule ],
+      declarations: [ SearchFormComponent ],
+      providers: [
+        HeroesService,
+        // { provide: HeroesService, useValue: MockHeroesService }
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchFormComponent);
+    heroesService = TestBed.get(HeroesService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    const fb = new FormBuilder();
-    const searchComponent = new SearchFormComponent(fb);
-    expect(searchComponent).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it('should have search form', () => {
-    const fb = new FormBuilder();
-    const searchComponent = new SearchFormComponent(fb);
-    searchComponent.ngOnInit();
-    const searchForm = searchComponent.searchForm;
-    expect(searchForm).toBeTruthy();
+    expect(component.searchForm.controls).toBeTruthy();
   });
 
   it('should have input for query', () => {
-    const searchForm = component.searchForm;
-    expect(searchForm.controls.query).toBeTruthy();
+    const searchForm = component.searchForm.controls;
+    expect(searchForm.query).toBeTruthy();
   });
 
   it('should validate form', () => {
@@ -53,27 +55,35 @@ describe('SearchFormComponent', () => {
 
   it('should return search results', () => {
     // Setup
-    const results = [{"ID": "581", "Name": "Scarlet Witch", "Alignment": "bad", "Gender": "Female", "EyeColor": "blue", "Race": "Mutant", "HairColor": "Brown", "Publisher": "Marvel Comics", "SkinColor": "-", "Height": "170", "Weight": "59"}];
-    component.results = results;
+    const hero = new Hero();
+    component.results = [hero];
+    hero.name = 'Scarlet Witch';
+    hero.alignment = 'bad';
+    component.heroes = [hero];
+    const expected = [hero];
     const searchForm = component.searchForm.controls;
 
     // Exercise: the form must be valid
-    searchForm.query.setValue('scarlet witch');
+    spyOn(heroesService, 'all').and.returnValue([hero]);
+    searchForm.query.setValue('Scarlet Witch');
 
     // Assert
-    expect(component.getResults()).toEqual(results,'should have results data');
+    expect(component.getResults()).toEqual(expected,'should have results data');
   });
 
   it('should return message if no results found', () => {
     // Setup
-    const results = 'No results.';
-    component.results = results;
+    const heroes = [new Hero()];
+    const expected = [];
     const searchForm = component.searchForm.controls;
+    component.heroes = heroes;
+    component.results = [];
 
     // Exercise
     searchForm.query.setValue('super potato');
+    spyOn(heroesService, 'all').and.returnValue(heroes);
 
     // Assert
-    expect(component.getResults()).toEqual(results,'should have results data');
+    expect(component.getResults()).toEqual(expected, 'should have results data');
   });
 });

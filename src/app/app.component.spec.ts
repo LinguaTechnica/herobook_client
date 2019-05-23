@@ -1,25 +1,41 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import {HomeComponent} from './home/home.component';
+import { HomeComponent } from './home/home.component';
+import { HeroListComponent } from './hero-list/hero-list.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+import {HeroDetailComponent} from './hero-detail/hero-detail.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('AppComponent', () => {
+  let component;
+  let instance;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        ReactiveFormsModule,
+        HttpClientModule
       ],
       declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        HeroListComponent,
+        HeroDetailComponent,
+        SearchFormComponent
       ],
     }).compileComponents();
   }));
 
+  beforeEach(() => {
+    component = TestBed.createComponent(AppComponent);
+    instance = component.componentInstance;
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    expect(instance).toBeTruthy();
   });
 
   it(`should have as title 'Hero Book'`, () => {

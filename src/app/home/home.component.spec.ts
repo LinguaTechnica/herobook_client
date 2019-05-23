@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
+import {SearchFormComponent} from '../search-form/search-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HeroListComponent} from '../hero-list/hero-list.component';
+import {HeroDetailComponent} from '../hero-detail/hero-detail.component';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -8,7 +14,12 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      imports: [ ReactiveFormsModule, HttpClientTestingModule ],
+      declarations: [
+        HomeComponent,
+        SearchFormComponent,
+        HeroListComponent, HeroDetailComponent
+      ]
     })
     .compileComponents();
   }));
@@ -20,8 +31,9 @@ describe('HomeComponent', () => {
   });
 
   it('should create', () => {
-    const instance = new HomeComponent();
-    expect(instance).toBeTruthy();
+    // TODO: Error Uncaught TypeError: this._subscribe is not a function thrown
+    // const instance = new HomeComponent();
+    expect(component).toBeTruthy();
   });
 
   it('should have nav brand logo', () => {

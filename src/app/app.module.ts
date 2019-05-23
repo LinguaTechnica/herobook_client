@@ -7,12 +7,16 @@ import { HomeComponent } from './home/home.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { HeroListComponent } from './hero-list/hero-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    HeroDetailComponent,
+    HeroListComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import {HeroesService} from '../heroes.service';
 import {Hero} from '../hero';
 
 @Component({
-  selector: 'app-search-form',
+  selector: 'search-form',
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.css']
 })
@@ -24,16 +24,17 @@ export class SearchFormComponent implements OnInit {
 
   getResults() {
     if (this.searchForm.valid) {
-      this.results = this.heroService.find(this.searchForm.controls.query);
-      console.log('Searching...');
-      // this.results = this.heroes.filter(hero => hero.Name === this.searchForm.controls.query.value);
-      if (this.results.length) {
-        return this.results;
-      }
-      return 'No results.';
+      this.results = this.find(this.searchForm.controls.query.value);
+      return this.results;
     } else {
       console.log('Invalid form!');
     }
+  }
+
+  find(query) {
+    return this.heroes.filter(hero => {
+      return hero.name === query;
+    });
   }
 
 }
