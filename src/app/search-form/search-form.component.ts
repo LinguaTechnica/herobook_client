@@ -19,7 +19,7 @@ export class SearchFormComponent implements OnInit {
     this.searchForm = this.fb.group({
       query: ['', Validators.required]
     });
-    this.heroService.all().subscribe(heroes => this.heroes = heroes );
+    this.heroService.all().subscribe(heroes => this.heroes = heroes.results );
   }
 
   getResults() {

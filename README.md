@@ -1,24 +1,11 @@
 # Hero Book
+> Blocks: 1-4
 
 Hero Book is an application that allows users to read about their favorite super heroes. It's got some nifty features:
 
 * Search functionality with filters
 * User registration
 * Favorites
-
-### Instructors ...
-
-This guide starts with a long walk through. Feel free to skip straight to the exercise at the bottom if students are already comfortable with how to create tests.
-
-This exercise is very flexible for intermediate to advanced lesson planning. Stretch goals can be easily added and ideas adapted. The exercise is focused around the following concepts:
-
-* TDD
-* Services (CRUDing)
-* Observables (HTTP, forms)
-* And the basics (components, directives)
-
-> TODO: Solution branches for the adjustable lesson planning (intermediate, and advanced)
-
 
 ## Setup
 It's recommended to install Augury for your Chrome dev tools. It's a good tool for inspecting Angular components within the browser. It can also be useful to yield insights and understanding about how your application works. It is not required, but it's very helpful.
@@ -109,7 +96,7 @@ Now add a test in `nav.component.spec.ts` for the next requirement and make it f
 
 ```typescript
   it('should have nav logo', () => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(NavbarComponent);
     const el = fixture.nativeElement;
     expect(el.querySelector('.brand-logo').innerText).toContain('Hero Book');
   });
@@ -129,21 +116,21 @@ We can make this test pass with the following code:
 Take a moment to understand how this works before moving onto the next part.
 
 
-### Integration Testing the NavComponent with AppComponent
+### Integration Testing the NavbarComponent with AppComponent
 
-Add the new nav selector to app.component.html. Let's try to create tests for the following:
+Add the new nav selector to `app.component.html`. Let's try to create tests for the following:
 
-1. Successfully loads `NavComponent`
+1. Successfully loads `NavbarComponent`
 
 Before writing any code, re-run the tests. The `AppComponent` tests should start failing with this error:
 
 ```
-'app-nav' is not a known element:
-  1. If 'app-nav' is an Angular component, then verify that it is part of this module.
-	2. If 'app-nav' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message. ("<div class="container">
+'app-navbar' is not a known element:
+  1. If 'app-navbar' is an Angular component, then verify that it is part of this module.
+	2. If 'app-navbar' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message. ("<div class="container">
 ```
 
-This component has a new dependency. If you declare `NavComponent` in the `TestBed`, the tests should pass again.
+This component has a new dependency. If you declare `NavbarComponent` in the `TestBed`, the tests should pass again.
 
 Whenever you're testing components that contain other components, you'll need to configure the `TestBed` to import them. Otherwise, you'll get errors when the test app tries to load the components.
 
@@ -153,8 +140,8 @@ Whenever you're testing components that contain other components, you'll need to
 Requirements for the AppComponent:
 
 **Homepage (AppComponent)**
-- has navigation (routes)
-- has search bar
+- has navigation
+- has search bar with placeholder text 'Search'
 - has a list of heroes 
 
 Start with our 3-step test setup:
@@ -210,7 +197,11 @@ The test should fail, and then you can begin writing the code to make it pass.
 
 ## Step 2: Creating the SearchForm Component
 
-Create the search form component.
+At this stage we can see that the search form on AppComponent can be placed in it's own component. 
+
+1. Create the search form component. 
+2. Cut and paste the form HTML from `app.component.html` into `search.component.html`. 
+3. Add the new `<app-search>` HTML element to `app.component.html` where the search form used to be.
 
 If you've got a good handle on creating forms within components and templates,, then testing them will feel a little familiar. The same code you usually use to access the form and check its validity works just as well in tests.
 
@@ -263,7 +254,7 @@ xit('should display a message if no results found', () => {
 });
 ```
 
-</detail>
+</details>
 
 > NOTE: To skip tests, simply add an 'x' to the beginning of the test case as you see here. Remove the x to run the tests. Running empty tests will otherwise return a successful test run, which isn't helpful.
 

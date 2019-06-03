@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hero } from './hero';
+import { tap } from 'rxjs/internal/operators/tap';
+import {Observable} from 'rxjs';
+
+interface HeroAPIResponse {
+  count: number;
+  next?: string;
+  previous?: string;
+  results?: [];
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +20,7 @@ export class HeroesService {
   constructor(private http: HttpClient) {}
 
   all() {
-    return this.http.get<Hero[]>(`${this.APIURL}/heroes/`);
+    return this.http.get<HeroAPIResponse>(`${this.APIURL}/heroes/`);
   }
 
 }

@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import {HeroDetailComponent} from './hero-detail/hero-detail.component';
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        HomeComponent,
+        NavbarComponent,
         HeroListComponent,
         HeroDetailComponent,
         SearchFormComponent

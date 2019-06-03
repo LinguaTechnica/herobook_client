@@ -13,7 +13,7 @@ export class HeroListComponent implements OnInit {
   constructor(private heroService: HeroesService) { }
 
   ngOnInit() {
-    this.heroService.all().subscribe(heroes => this.heroes = heroes );
+    this.heroService.all().subscribe(heroes => this.heroes = heroes.results );
   }
 
 }
