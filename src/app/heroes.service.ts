@@ -8,7 +8,7 @@ interface HeroAPIResponse {
   count: number;
   next?: string;
   previous?: string;
-  results?: [];
+  results?: Hero[];
 }
 
 @Injectable({
