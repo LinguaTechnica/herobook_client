@@ -3,9 +3,16 @@
 
 Hero Book is an application that allows users to read about their favorite super heroes. It's got some nifty features:
 
-* Search functionality with filters
+Features:
+
+* Search for heroes
+* View individual heroes
+* Filter heroes by their attributes
+
+Additional optional features:
+
 * User registration
-* Favorites
+* User favorites lists
 
 ## Setup
 It's recommended to install Augury for your Chrome dev tools. It's a good tool for inspecting Angular components within the browser. It can also be useful to yield insights and understanding about how your application works. It is not required, but it's very helpful.
@@ -142,7 +149,6 @@ Requirements for the AppComponent:
 **Homepage (AppComponent)**
 - has navigation
 - has search bar with placeholder text 'Search'
-- has a list of heroes 
 
 Start with our 3-step test setup:
 
@@ -197,17 +203,17 @@ The test should fail, and then you can begin writing the code to make it pass.
 
 ## Step 2: Creating the SearchForm Component
 
-At this stage we can see that the search form on AppComponent can be placed in it's own component. 
+At this stage we can see that the search form on AppComponent can be placed in it's own component instead.
 
 1. Create the search form component. 
-2. Cut and paste the form HTML from `app.component.html` into `search.component.html`. 
-3. Add the new `<app-search>` HTML element to `app.component.html` where the search form used to be.
+2. Cut and paste the form HTML from `app.component.html` into `search-form.component.html`. 
+3. Add the new `<app-search-form>` HTML element to `app.component.html` where the search form used to be.
 
 If you've got a good handle on creating forms within components and templates,, then testing them will feel a little familiar. The same code you usually use to access the form and check its validity works just as well in tests.
 
 Once the new component is created, open `search-form.component.ts` and the matching spec file. Run the tests. 
 
-Before writing new tests, always review the requirements. In this case, there aren't very many requirements so you'll need to create them. So how might you approach creating your own requirements?
+Before writing new tests, always review the requirements. In this case, there aren't very many requirements so you'll need to create them. How might you approach creating your own requirements?
 
 Think about what you want the search for to do. From the user's perspective, they should be able to visit Hero Book, type a hero's name into a search box, and view the results.
 
@@ -225,9 +231,9 @@ Search Form Component
 
 Go ahead and write the outlines of each test case using the requirements above. 
 
-Then try to add the assertions you think you'll make to make the test green.
+Then try to add the assertions that you think you'll need to make the test green.
 
-One test case at a time.
+**Pass one test case at a time.**
 
 <details>
 <summary>Click to see examples of the base test cases</summary>
@@ -256,7 +262,7 @@ xit('should display a message if no results found', () => {
 
 </details>
 
-> NOTE: To skip tests, simply add an 'x' to the beginning of the test case as you see here. Remove the x to run the tests. Running empty tests will otherwise return a successful test run, which isn't helpful.
+> NOTE: To skip tests, simply add an 'x' to the beginning of the test case as you see here. Remove the x to run the tests. Otherwise, running empty tests will return a passing test, which isn't helpful.
 
 Let's add some code to test the first requirement. It says to make sure that the component has a form. So add an assertion which says exactly that: `expect(searchForm).toBeTruthy()`.
 
@@ -301,9 +307,7 @@ You'll find json data files in the `srce/app/data` folder. Use it to help you un
 *Hero Book API*
 http://herobookapi.herokuapp.com/api/v1/heroes/
 
-Use this api to CRUD data for your apps. No authentication required for this exercise so you can freely access and update the data here. 
-
-*ONLY DELETE HEROES YOU CREATE* Everyone can see the changes to the heroes!
+Use this api to CRUD data for your app. No authentication required. Check with your instructor about open access to make PATCH AND PUT/POST requests. The API has read-access, but could require a key for write-access.
 
 
 ### Requirements
@@ -311,21 +315,20 @@ Use this api to CRUD data for your apps. No authentication required for this exe
 **Homepage (AppComponent)**
 - has navigation (routes)
 - has search bar
-- has a list of heroes
+- renders other components, such as lists of heroes and hero details
 
 **Heroes**
 - have unique page
 - have stats displayed on their page
-- have an image on their page
-- has full CRUD
-
-**Users**
-- can register (localStorage)
-- can login (localStorage)
-- STRETCH GOAL: can have a favorites list
-- STRETCH GOAL: can add favorites to their list
+- can be updated
 
 **Search**
 - can search for heroes by name
 - can view search results
 - STRETCH GOAL: has filters to search by: powers, species, and gender
+
+**Users (all optional stretch goals)**
+- STRETCH: can register 
+- STRETCH: can login 
+- STRETCH GOAL: can have a favorites list
+- STRETCH GOAL: can add favorites to their list

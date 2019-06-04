@@ -52,7 +52,7 @@ describe('NavbarComponent', () => {
   });
 
   it('links should route to each component', fakeAsync(() => {
-    const routes = ['search', 'heroes'];
+    const routes = ['heroes'];
     routes.map(route => {
       router.navigate([route]);
       tick();
