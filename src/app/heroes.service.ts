@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hero } from './hero';
-import { tap } from 'rxjs/internal/operators/tap';
-import {Observable} from 'rxjs';
+import { environment as env } from '../environments/environment';
 
 interface HeroAPIResponse {
   count: number;
@@ -15,7 +14,7 @@ interface HeroAPIResponse {
   providedIn: 'root'
 })
 export class HeroesService {
-  private APIURL = 'http://herobookapi.herokuapp.com/api/v1';
+  private APIURL = env.heroApiUrl;
 
   constructor(private http: HttpClient) {}
 
