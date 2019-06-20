@@ -1,3 +1,30 @@
-<div>
-  <h6>{{ hero.name }} - {{ hero.alignment }}</h6>
+<div class="col s4 13">
+  <div class="card medium ">
+    <img class="activator responsive-img" src="{{ hero.image }}" alt="hero image">
+    <div class="card-content">
+      <h5 class="card-title">{{ hero.name }}</h5>
+      <div class="card-text">
+        <ul>
+          <li>Alignment: {{ hero.alignment }}</li>
+          <li>Gender: {{ hero.gender }}</li>
+          <li>Power: {{ hero.power }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">{{ hero.name }}<i class="material-icons right">close</i></span>
+      <ul>
+        <li>Height: {{ hero.height }}</li>
+        <li>Weight: {{ hero.weight }}</li>
+        <li>Eye Color: {{ hero.eyeColor }}</li>
+        <li>Hair Color: {{ hero.hairColor }}</li>
+        <li>Race: {{ hero.race }}</li>
+        <li>Skin: {{ hero.skinColor }}</li>
+        <li>Speed: {{ hero.speed }}</li>
+        <li>Intelligence: {{ hero.intelligence }}</li>
+        <li>Strength: {{ hero.strength }}</li>
+        <li>Durability: {{ hero.durability }}</li>
+      </ul>
+    </div>
+  </div>
 </div>

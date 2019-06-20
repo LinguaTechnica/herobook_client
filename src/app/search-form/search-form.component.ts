@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {HeroesService} from '../heroes.service';
 import {Hero} from '../hero';
 
@@ -22,6 +22,9 @@ export class SearchFormComponent implements OnInit {
     this.heroService.all().subscribe(heroes => this.heroes = heroes.results );
   }
 
+  /**
+   * @desc search results handler
+   */
   getResults() {
     if (this.searchForm.valid) {
       this.results = this.find(this.searchForm.controls.query.value);
@@ -31,10 +34,21 @@ export class SearchFormComponent implements OnInit {
     }
   }
 
+  /**
+   * @desc simple search query filter
+   * @param query: string, user query text
+   */
   find(query) {
-    return this.heroes.filter(hero => {
-      return hero.name === query;
-    });
+    // TODO: create a dynamic query that searches as the user types
+    return this.heroes.reduce((acc, hero) => {
+      Object.keys(hero)
+        .map(k => {
+          if (hero[k] && hero[k].toLowerCase().includes(query.toLowerCase())) {
+            acc.push(hero);
+          }
+        });
+      return acc;
+    }, []);
   }
 
 }
